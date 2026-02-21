@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor Inteligente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Gestor Inteligente</h1>
+
+    <!-- ========================= -->
+    <!-- ANÁLISIS -->
+    <!-- ========================= -->
+
+    <div class="card">
+        <h2>Análisis Inteligente</h2>
+
+        <div class="resumen">
+            <div class="stat">
+                <span>Total</span>
+                <strong>{{ analisis.total }}</strong>
+            </div>
+            <div class="stat">
+                <span>Completadas</span>
+                <strong>{{ analisis.completadas }}</strong>
+            </div>
+            <div class="stat">
+                <span>Pendientes</span>
+                <strong>{{ analisis.pendientes }}</strong>
+            </div>
+        </div>
+
+        <p class="mensaje">{{ analisis.mensaje }}</p>
+
+        <div class="barra-container">
+            <div class="barra" data-porcentaje="{{ analisis.porcentaje }}">
+                {{ analisis.porcentaje }}%
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- AGREGAR ACTIVIDAD -->
+    <!-- ========================= -->
+
+    <div class="card">
+        <h2>Agregar Actividad</h2>
+
+        <form method="POST" action="/agregar" class="form">
+            <input type="text" name="titulo" placeholder="Título" required>
+            <input type="text" name="categoria" placeholder="Categoría" required>
+            <button type="submit" class="btn-primary">Agregar</button>
+        </form>
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- LISTA DE ACTIVIDADES -->
+    <!-- ========================= -->
+
+    <div class="card">
+        <h2>Lista de Actividades</h2>
+
+        {% if actividades %}
+            <div class="grid">
+                {% for act in actividades %}
+                    <div class="actividad-card {% if act.completada %}done{% endif %}">
+
+                        <div class="actividad-info">
+                            <h3>{{ act.titulo }}</h3>
+                            <span class="categoria">{{ act.categoria }}</span>
+
+                            {% if act.completada %}
+                                <span class="badge completada">Completada</span>
+                            {% else %}
+                                <span class="badge pendiente">Pendiente</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="acciones">
+                            <a class="btn-completar" href="/completar/{{ loop.index0 }}">
+                                Toggle
+                            </a>
+
+                            <a class="btn-eliminar"
+                               onclick="return confirm('¿Seguro que deseas eliminar esta actividad?')"
+                               href="/eliminar/{{ loop.index0 }}">
+                                Eliminar
+                            </a>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No hay actividades registradas.</p>
+        {% endif %}
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- ASISTENTE IA -->
+    <!-- ========================= -->
+
+    <div class="card ai-card">
+        <h2>Asistente Inteligente</h2>
+
+        <a class="btn-ai" href="/recomendacion">
+            Generar Recomendación Inteligente
+        </a>
+
+        {% if recomendacion %}
+            <div class="ai-response">
+                <p>{{ recomendacion }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- DESCARGAR PDF -->
+    <!-- ========================= -->
+
+    <div class="card center">
+        <a class="btn-pdf" href="/descargar_pdf">
+            Descargar Reporte PDF
+        </a>
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- SCRIPT BARRA PROGRESO -->
+<!-- ========================= -->
+
+<script>
+    const barra = document.querySelector('.barra');
+    if (barra) {
+        const porcentaje = barra.getAttribute('data-porcentaje');
+        barra.style.width = porcentaje + '%';
+    }
+</script>
+
+</body>
+</html>

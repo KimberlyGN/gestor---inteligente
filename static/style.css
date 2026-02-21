@@ -1,0 +1,198 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    animation: fadeIn 0.4s ease-in;
+}
+
+.center {
+    text-align: center;
+}
+
+.resumen {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.stat span {
+    display: block;
+    color: gray;
+    font-size: 14px;
+}
+
+.stat strong {
+    font-size: 20px;
+}
+
+.mensaje {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.barra-container {
+    background: #eee;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 25px;
+}
+
+.barra {
+    background: linear-gradient(90deg, #4CAF50, #2ecc71);
+    height: 100%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.form {
+    display: flex;
+    gap: 10px;
+}
+
+.form input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.btn-primary {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.grid {
+    display: grid;
+    gap: 15px;
+}
+
+.actividad-card {
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s ease;
+}
+
+.actividad-card:hover {
+    transform: translateY(-3px);
+}
+
+.done {
+    opacity: 0.7;
+}
+
+.categoria {
+    display: block;
+    font-size: 13px;
+    color: gray;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.completada {
+    background: #2ecc71;
+    color: white;
+}
+
+.pendiente {
+    background: #e74c3c;
+    color: white;
+}
+
+.acciones a {
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-completar {
+    color: #2ecc71;
+}
+
+.btn-eliminar {
+    color: #e74c3c;
+}
+
+.btn-pdf {
+    background: #34495e;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================== */
+/* CAJA AI MODERNA */
+/* ===================== */
+
+.ai-card {
+    background: linear-gradient(135deg, #1f1f2e, #2c2c44);
+    color: white;
+    border-radius: 20px;
+}
+
+.ai-card h2 {
+    color: #00e0ff;
+}
+
+.btn-ai {
+    display: inline-block;
+    background: #00e0ff;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.ai-response {
+    margin-top: 15px;
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 15px;
+    animation: fadeIn 0.5s ease-in;
+}
