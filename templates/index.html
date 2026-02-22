@@ -34,15 +34,22 @@
             </div>
         </div>
 
-        <p class="mensaje">{{ analisis.mensaje }}</p>
+        <p class="mensaje" data-porcentaje="{{ analisis.porcentaje }}">
+            {{ analisis.mensaje }}
+        </p>
 
         <div class="barra-container">
             <div class="barra" data-porcentaje="{{ analisis.porcentaje }}">
                 {{ analisis.porcentaje }}%
             </div>
         </div>
-    </div>
 
+        {% if analisis.porcentaje == 100 %}
+            <div class="medalla">
+                🏆 Productividad Máxima Activada
+            </div>
+        {% endif %}
+    </div>
 
     <!-- ========================= -->
     <!-- AGREGAR ACTIVIDAD -->
@@ -58,7 +65,6 @@
         </form>
     </div>
 
-
     <!-- ========================= -->
     <!-- LISTA DE ACTIVIDADES -->
     <!-- ========================= -->
@@ -70,7 +76,6 @@
             <div class="grid">
                 {% for act in actividades %}
                     <div class="actividad-card {% if act.completada %}done{% endif %}">
-
                         <div class="actividad-info">
                             <h3>{{ act.titulo }}</h3>
                             <span class="categoria">{{ act.categoria }}</span>
@@ -93,7 +98,6 @@
                                 Eliminar
                             </a>
                         </div>
-
                     </div>
                 {% endfor %}
             </div>
@@ -101,7 +105,6 @@
             <p>No hay actividades registradas.</p>
         {% endif %}
     </div>
-
 
     <!-- ========================= -->
     <!-- ASISTENTE IA -->
@@ -121,7 +124,6 @@
         {% endif %}
     </div>
 
-
     <!-- ========================= -->
     <!-- DESCARGAR PDF -->
     <!-- ========================= -->
@@ -134,16 +136,26 @@
 
 </div>
 
-
-<!-- ========================= -->
-<!-- SCRIPT BARRA PROGRESO -->
-<!-- ========================= -->
-
 <script>
     const barra = document.querySelector('.barra');
+    const mensaje = document.querySelector('.mensaje');
+
     if (barra) {
-        const porcentaje = barra.getAttribute('data-porcentaje');
-        barra.style.width = porcentaje + '%';
+        const porcentaje = parseInt(barra.getAttribute('data-porcentaje'));
+
+        setTimeout(() => {
+            barra.style.width = porcentaje + '%';
+        }, 300);
+
+        if (mensaje) {
+            if (porcentaje <= 30) {
+                mensaje.style.color = "#ff4b5c";
+            } else if (porcentaje <= 70) {
+                mensaje.style.color = "#ffd93d";
+            } else {
+                mensaje.style.color = "#00ffa3";
+            }
+        }
     }
 </script>
 
